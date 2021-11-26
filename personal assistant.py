@@ -16,7 +16,7 @@ import requests
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
-""" openai.api_key = os.getenv("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")
+""" openai.api_key = os.getenv("")
 
 def generateResponse(statement):
     response = openai.Completion.create(
