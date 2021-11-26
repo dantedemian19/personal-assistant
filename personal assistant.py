@@ -99,7 +99,7 @@ if __name__=='__main__':
                     AI.state = False
                 
                 elif AI.name in statement and " cállate " in statement and " minutos " in statement:
-                    waitfor= int(re.search(r'\d+', statement)[0])*60
+                    waitfor= int(re.search(r'por ', statement)[0])*60
                     speak("i will be later for {waitfor}")
                     print(waitfor)
                     time.sleep(statement.isdigit()*60)
