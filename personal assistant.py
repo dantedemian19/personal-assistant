@@ -35,7 +35,7 @@ class AI :
 region="es-AR"
 def recognizer(audio):
     try:
-        statement=" "+r.recognize_google(audio,language=region)
+        statement=' '+r.recognize_google(audio,language=region)+' '
         print(f"mic: {statement}\n")
         return statement
     except Exception as e:
@@ -87,8 +87,9 @@ if __name__=='__main__':
     while program_state:
         if not AI.state:
             statement = takeCommand().lower()
-        if (AI.name in statement and "préndete" in statement) or AI.state:
+        if (AI.name in statement and " préndete " in statement) or AI.state:
             AI.state = True
+            speak("loaded")
             print("load")
             while AI.state:
                 statement = takeCommand().lower()
@@ -99,7 +100,7 @@ if __name__=='__main__':
                     AI.state = False
                 
                 elif AI.name in statement and " cállate " in statement and " minutos " in statement:
-                    waitfor= int(re.search(r'por ', statement)[0])*60
+                    waitfor= int(re.search(r'\d+', statement)[0])*60
                     speak("i will be later for {waitfor}")
                     print(waitfor)
                     time.sleep(statement.isdigit()*60)
@@ -114,7 +115,7 @@ if __name__=='__main__':
                     speak("i am an artificial inteligence made by dante alfonso, only because he was bored")
 
                     
-                elif "quien es tu creador" in statement or "quien te creo" in statement:
+                elif " quien es tu creador " in statement or " quien te creo " in statement:
                     speak("I was built by Dante D. Alfonso")
                 
                 elif " decí " in statement and AI.name in statement:
@@ -122,7 +123,7 @@ if __name__=='__main__':
                     if " decí " in statement: statement =statement.replace(" decí ", " ",1)
                     speak(statement)
 
-                elif AI.name in statement and "hola" in statement:
+                elif AI.name in statement and " hola " in statement:
                     hello()
                 
                 elif ' hora es ' in statement and  AI.name in statement:
@@ -140,9 +141,10 @@ if __name__=='__main__':
                                     speak(results)
                                 except Exception as e:
                                     speak("Sorry, I can't find any result")
-                                break
                             else:
                                 speak("what")
+                elif ' open visual ' in statement and  AI.name in statement:
+                    os.system("code")
 
                 elif AI.name in statement:
                     speak("what")
@@ -152,25 +154,25 @@ if __name__=='__main__':
                             speak('ok')
                             break
 
-                        elif 'open youtube' in statement:
+                        elif ' open youtube ' in statement:
                             webbrowser.open_new_tab("https://www.youtube.com")
                             speak("youtube is open now")
                             time.sleep(5)
                             break
 
-                        elif 'open google' in statement:
+                        elif ' open google ' in statement:
                             webbrowser.open_new_tab("https://www.google.com")
                             speak("Google chrome is open now")
                             time.sleep(5)
                             break
 
-                        elif 'open gmail' in statement:
-                            webbrowser.open_new_tab("gmail.com")
+                        elif ' open gmail ' in statement:
+                            webbrowser.open_new_tab("https://mail.google.com/")
                             speak("Google Mail open now")
                             time.sleep(5)
                             break
 
-                        elif "log off" in statement or "sign out" in statement:
+                        elif " log off " in statement or "sign out" in statement:
                             speak("Ok , the PC will log off")
                             subprocess.call(["shutdown", "/l"])
                             break
